@@ -37,7 +37,7 @@ class Calculator {
         }
         this.operation = operation
         this.previousOperand = this.currentOperand
-        this.previousOperandElement.innerText = this.currentOperand + ' ' + operation
+        // this.previousOperandElement.innerText = this.currentOperand + ' ' + operation
         this.currentOperand = ''
     }
 
@@ -63,19 +63,40 @@ class Calculator {
             default: 
                 return
         }
-        this.previousOperandElement.innerText = this.previousOperand + ' ' + this.operation + ' ' + this.currentOperand + ' ='
+        this.previousOperandElement.innerText += ` ${this.getDisplayNumber(this.currentOperand)} =`
         this.currentOperand = computation
         this.operation = undefined
         this.previousOperand = ''
+        
+    }
+
+    getDisplayNumber(number) {
+        const stringNumber = number.toString()
+        const integerDigits = parseFloat(stringNumber.split('.')[0])
+        const decimalDigits = stringNumber.split('.')[1]
+        let integerDisplay
+        if (isNaN(integerDigits)) {
+        integerDisplay = ''
+        } else {
+        integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+        }
+        if (decimalDigits != null) {
+        return `${integerDisplay}.${decimalDigits}`
+        } else {
+        return integerDisplay
+        }
     }
 
     updateDisplay() {
-        this.currentOperandElement.innerText = this.currentOperand
+        this.currentOperandElement.innerText = this.getDisplayNumber(this.currentOperand)
         if (this.currentOperand == '') {
             this.currentOperandElement.innerText = this.previousOperand
         }
         if (this.currentOperandElement.innerText == '') {
             this.currentOperandElement.innerText = '0'
+        }
+        if (this.operation != null) {
+            this.previousOperandElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
         }
     }
 }
