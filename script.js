@@ -1,7 +1,8 @@
-const currentOperandElement = document.querySelector('.calculator__result'); // value handler (main display)
-const previousOperandElement = document.querySelector('.display__value-handler'); // value handler (small display)
-const valueButtons = document.querySelectorAll('[data-number]');
-const operationButtons = document.querySelectorAll('[data-operation]:not([data-operation=equal])');
+const currentOperandElement = document.querySelector('.calculator__result') // value handler (main display)
+const previousOperandElement = document.querySelector('.display__value-handler') // value handler (small display)
+const valueButtons = document.querySelectorAll('[data-number]')
+const operationButtons = document.querySelectorAll('[data-operation]:not([data-operation=equal],[data-operation=percent])')
+const percentButton = document.querySelector('[data-operation=percent]')
 const clearAllButton = document.querySelector('[data-clear-all]');
 const clearCurrentButton = document.querySelector('[data-clear]')
 const deleteButton = document.querySelector('[data-delete]');
@@ -43,7 +44,6 @@ class Calculator {
         }
         this.operation = operation
         this.previousOperand = this.currentOperand
-        // this.previousOperandElement.innerText = this.currentOperand + ' ' + operation
         this.currentOperand = ''
     }
 
@@ -73,7 +73,13 @@ class Calculator {
         this.currentOperand = computation
         this.operation = undefined
         this.previousOperand = ''
-        
+    }
+
+    makePercent() {
+        let computation
+        const current = parseFloat(this.currentOperand)
+        computation = current / 100
+        this.currentOperand = computation
     }
 
     getDisplayNumber(number) {
@@ -121,6 +127,11 @@ operationButtons.forEach(btn => {
         calculator.chooseOperation(btn.innerText)
         calculator.updateDisplay()
     })
+})
+
+percentButton.addEventListener('click', () => {
+    calculator.makePercent()
+    calculator.updateDisplay()
 })
 
 equalsButton.addEventListener('click', () => {
