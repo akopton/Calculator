@@ -16,28 +16,18 @@ body {
   width: 100%;
   height: 80px;
   background-color: white;
-  position: relative;
   overflow: hidden;
+  display: flex;
 }
 .calculator__wrap .calculator__display .display__value-handler {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 100px;
-  height: 20px;
+  height: 100%;
+  width: 50%;
   border: 1px solid black;
-  z-index: 11;
 }
 .calculator__wrap .calculator__display .calculator__result {
-  width: 100%;
   height: 100%;
-  padding: 0 10px;
-  font-size: 30px;
-  text-align: end;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 10;
+  width: 50%;
+  border: 1px solid black;
 }
 .calculator__wrap .calculator__buttons {
   background-color: white;
