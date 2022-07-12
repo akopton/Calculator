@@ -29,11 +29,42 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-
+        if (this.currentOperand === '') return
+        if (this.previousOperand !== '') {
+            this.compute()
+        }
+        this.operation = operation
+        this.previousOperand = this.currentOperand
+        this.previousOperandElement.innerText = this.currentOperand + ' ' + operation
+        this.currentOperand = ''
     }
 
     compute() {
+        let computation
+        const prev = parseFloat(this.previousOperand)
+        const current = parseFloat(this.currentOperand)
 
+        if (isNaN(prev) || isNaN(current)) return
+        switch (this.operation) {
+            case '+':
+                computation = prev + current
+                break
+            case '-':
+                computation = prev - current
+                break
+            case 'x':
+                computation = prev * current
+                break
+            case '/':
+                computation = prev / current
+                break
+            default: 
+                return
+        }
+        this.previousOperandElement.innerText = this.previousOperand + ' ' + this.operation + ' ' + this.currentOperand + ' ='
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = ''
     }
 
     updateDisplay() {
@@ -45,14 +76,19 @@ const calculator = new Calculator(previousOperandElement, currentOperandElement)
 
 valueButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        calculator.appendNumber(btn.innerText);
-        calculator.updateDisplay();
+        calculator.appendNumber(btn.innerText)
+        calculator.updateDisplay()
     })
 })
 
 operationButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        calculator.chooseOperation(btn.innerText);
-        calculator.updateDisplay();
+        calculator.chooseOperation(btn.innerText)
+        calculator.updateDisplay()
     })
+})
+
+equalsButton.addEventListener('click', () => {
+    calculator.compute()
+    calculator.updateDisplay()
 })
