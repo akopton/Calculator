@@ -3,6 +3,7 @@ const previousOperandElement = document.querySelector('.display__value-handler')
 const valueButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]:not([data-operation=equal])');
 const clearAllButton = document.querySelector('[data-clear-all]');
+const clearCurrentButton = document.querySelector('[data-clear]')
 const deleteButton = document.querySelector('[data-delete]');
 const equalsButton = document.querySelector('[data-operation=equal]')
 
@@ -19,6 +20,11 @@ class Calculator {
         this.previousOperand = ''
         this.currentOperand = ''
         this.operation = undefined
+    }
+
+    clearCurrent() {
+        this.currentOperandElement.innerText = '0'
+        this.currentOperand = ''
     }
 
     delete() {
@@ -127,7 +133,12 @@ clearAllButton.addEventListener('click', () => {
     calculator.updateDisplay()
 })
 
+clearCurrentButton.addEventListener('click', () => {
+    calculator.clearCurrent()
+})
+
 deleteButton.addEventListener('click', () => {
     calculator.delete()
     calculator.updateDisplay()
 })
+
