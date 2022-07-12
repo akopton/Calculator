@@ -14,6 +14,8 @@ class Calculator {
     }
 
     clear() {
+        this.previousOperandElement.innerText = '0'
+        this.currentOperandElement.innerText = '0'
         this.previousOperand = ''
         this.currentOperand = ''
         this.operation = undefined
@@ -69,6 +71,7 @@ class Calculator {
 
     updateDisplay() {
         this.currentOperandElement.innerText = this.currentOperand
+        if (this.currentOperandElement.innerText == '') this.currentOperandElement.innerText = this.previousOperand
     }
 }
 
@@ -90,5 +93,10 @@ operationButtons.forEach(btn => {
 
 equalsButton.addEventListener('click', () => {
     calculator.compute()
+    calculator.updateDisplay()
+})
+
+clearAllButton.addEventListener('click', () => {
+    calculator.clear()
     calculator.updateDisplay()
 })
