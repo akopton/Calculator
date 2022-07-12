@@ -16,7 +16,7 @@ class Calculator {
     }
 
     clear() {
-        this.previousOperandElement.innerText = '0'
+        this.previousOperandElement.innerText = ''
         this.currentOperandElement.innerText = '0'
         this.previousOperand = ''
         this.currentOperand = ''
