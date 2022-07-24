@@ -6,6 +6,9 @@ const clearCurrentButton = document.querySelector('[data-clear]')
 const deleteButton = document.querySelector('[data-delete]');
 const equalsButton = document.querySelector('[data-operation=equal]')
 const makeNegativeBtn = document.querySelector('[data-operation=negative]')
+const resultsHistoryContent = document.querySelector('.results-history__content')
+const showResultsBtn = document.querySelector('.results-history__title')
+const resultsHistory = document.querySelector('.results-history')
 
 const operationButtons = [];
 const valueButtons = [];
@@ -140,6 +143,14 @@ class Calculator {
             this.previousOperandElement.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
         }
     }
+
+    updateHistory() {
+        let historyResult = document.createElement('span')
+        historyResult.innerText = `${this.getDisplayNumber(this.currentOperand)}`
+        if (resultsHistoryContent.querySelectorAll('span').length <= 10) {
+            resultsHistoryContent.appendChild(historyResult)
+        }
+    }
 }
 
 const calculator = new Calculator(previousOperandElement, currentOperandElement);
@@ -176,6 +187,7 @@ percentButton.addEventListener('click', () => {
 equalsButton.addEventListener('click', () => {
     calculator.compute()
     calculator.updateDisplay()
+    calculator.updateHistory()
 })
 
 clearAllButton.addEventListener('click', () => {
@@ -192,3 +204,6 @@ deleteButton.addEventListener('click', () => {
     calculator.updateDisplay()
 })
 
+showResultsBtn.addEventListener('click', () => {
+    resultsHistory.classList.toggle('opened')
+})
