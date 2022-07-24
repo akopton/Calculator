@@ -1,12 +1,13 @@
 const currentOperandElement = document.querySelector('.calculator__result') // value handler (main display)
 const previousOperandElement = document.querySelector('.display__value-handler') // value handler (small display)
 const valueButtons = document.querySelectorAll('[data-number]')
-const operationButtons = document.querySelectorAll('[data-operation]:not([data-operation=equal],[data-operation=percent])')
+const operationButtons = document.querySelectorAll('[data-operation]:not([data-operation=equal],[data-operation=percent],[data-operation=negative])')
 const percentButton = document.querySelector('[data-operation=percent]')
 const clearAllButton = document.querySelector('[data-clear-all]');
 const clearCurrentButton = document.querySelector('[data-clear]')
 const deleteButton = document.querySelector('[data-delete]');
 const equalsButton = document.querySelector('[data-operation=equal]')
+const makeNegativeBtn = document.querySelector('[data-operation=negative]')
 
 class Calculator {
     constructor(previousOperandElement, currentOperandElement) {
@@ -33,8 +34,18 @@ class Calculator {
     }
 
     appendNumber(number) {
-        if (number === '.' && this.currentOperandElement.includes('.')) return
         this.currentOperand = this.currentOperand.toString() + number.toString()
+        console.log(number)
+    }
+
+
+    makeNegative() {
+        this.currentOperand = this.currentOperand.toString()
+        if (this.currentOperand[0] != '-') {
+            this.currentOperand = '-' + this.currentOperand
+        } else {
+            this.currentOperand = this.currentOperand.slice(1)
+        }
     }
 
     chooseOperation(operation) {
@@ -115,10 +126,20 @@ class Calculator {
 
 const calculator = new Calculator(previousOperandElement, currentOperandElement);
 
+
+
+makeNegativeBtn.addEventListener('click', ()=>{
+    calculator.makeNegative()
+    calculator.updateDisplay()
+})
+
+
 valueButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        calculator.appendNumber(btn.innerText)
-        calculator.updateDisplay()
+        if (calculator.currentOperand.length < 10) {
+            calculator.appendNumber(btn.innerText)
+            calculator.updateDisplay()
+        }
     })
 })
 
