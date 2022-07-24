@@ -18,30 +18,34 @@
 
         </div>
         <div class="calculator__buttons">
-            <button class="button" data-operation="percent">%</button>
-            <button class="button" data-clear="clear">CE</button>
-            <button class="button" data-clear-all="clearAll">C</button>
+            <button class="button --clearAll" data-clear-all="clearAll">CE</button>
+            <button class="button" data-clear="clear">C</button>
             <button class="button" data-delete="delete"><</button>
-            <button class="button"></button>
-            <button class="button"></button>
-            <button class="button"></button>
+            <button class="button --negative" data-operation="negative">+/-</button>
+            <button class="button" data-operation="percent">%</button>
+
             <button class="button" data-operation="divide">/</button>
+            <button class="button" data-operation="multiple">x</button>
+
+
+
             <button class="button" value="7" data-number="7">7</button>
             <button class="button" value="8" data-number="8">8</button>
             <button class="button" value="9" data-number="9">9</button>
-            <button class="button" data-operation="multiple">x</button>
+            <button class="button" data-operation="subtract">-</button>
+
             <button class="button" value="4" data-number="4">4</button>
             <button class="button" value="5" data-number="5">5</button>
             <button class="button" value="6" data-number="6">6</button>
-            <button class="button" data-operation="subtract">-</button>
+            <button class="button" data-operation="add">+</button>
+
             <button class="button" value="1" data-number="1">1</button>
             <button class="button" value="2" data-number="2">2</button>
             <button class="button" value="3" data-number="3">3</button>
-            <button class="button" data-operation="add">+</button>
-            <button class="button" data-operation="negative">+/-</button>
-            <button class="button" value="0" data-number="0">0</button>
+
+            <button class="button --zero" value="0" data-number="0">0</button>
             <button class="button" value="." data-number=".">.</button>
-            <button class="button" data-operation="equal">=</button>
+            <button class="button --equals" data-operation="equal">=</button>
         </div>
     </div>
 </body>

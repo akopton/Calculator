@@ -35,7 +35,6 @@ class Calculator {
 
     appendNumber(number) {
         this.currentOperand = this.currentOperand.toString() + number.toString()
-        console.log(number)
     }
 
 

@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   height: 100vh;
   width: 100vw;
@@ -11,12 +17,13 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: "Lato", sans-serif;
 }
 .calculator__wrap .calculator__display {
   width: 100%;
   height: 80px;
   position: relative;
-  text-align: end;
+  text-align: right;
   overflow: hidden;
 }
 .calculator__wrap .calculator__display .calculator__result {
@@ -49,4 +56,18 @@ body {
 .calculator__wrap .calculator__buttons .button {
   height: 50px;
   width: 70px;
+  font-size: 20px;
+}
+.calculator__wrap .calculator__buttons .button.--clearAll {
+  width: 142px;
+  grid-column: 1/span 2;
+}
+.calculator__wrap .calculator__buttons .button.--zero {
+  width: 142px;
+  grid-column: 1/span 2;
+}
+.calculator__wrap .calculator__buttons .button.--equals {
+  height: 102px;
+  grid-column: 4;
+  grid-row: 5/span 6;
 }/*# sourceMappingURL=style.css.map */
