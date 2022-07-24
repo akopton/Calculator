@@ -41,7 +41,6 @@ body {
 }
 .calculator__wrap .calculator__display .display__value-handler {
   height: 30%;
-  width: 200px;
   font-size: 16px;
   position: absolute;
   top: 0;
